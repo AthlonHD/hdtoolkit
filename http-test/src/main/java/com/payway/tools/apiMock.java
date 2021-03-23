@@ -1,3 +1,5 @@
+package com.payway.tools;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +49,7 @@ public class apiMock {
 
     public static class httpsRequest {
 
-        public void sendGetRequest(String api, String key, String value) {
+        public void sendGetRequest(String api) {
 
             HttpsURLConnection connection = null;
             InputStream is = null;
@@ -74,7 +76,7 @@ public class apiMock {
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setRequestProperty("token", "3e0ac8d2-190c-4047-9582-066eed9b3066");
                 //connection.setRequestProperty("ProfileToken", "F2BCE9044A474C39BF1F8466708C2D9E");
-                connection.setRequestProperty(key, value);
+//                connection.setRequestProperty(key, value);
                 // 设置连接主机服务器的超时时间：30000毫秒
                 connection.setConnectTimeout(30000);
                 // 设置读取远程返回的数据时间：
@@ -126,7 +128,7 @@ public class apiMock {
 //            return null;
         }
 
-        public void sendPostRequest(String api, String key, String value, String param) {
+        public void sendPostRequest(String api, String param) {
             HttpsURLConnection connection = null;
             InputStream is = null;
             OutputStream os = null;
@@ -161,8 +163,8 @@ public class apiMock {
                 // 设置请求头
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setRequestProperty("token", "3e0ac8d2-190c-4047-9582-066eed9b3066");
-                connection.setRequestProperty(key, value);
-                // 通过连接对象获取一个输出流
+//                connection.setRequestProperty(key, value);
+                // 通过连接对象获取一个输出流 😉
                 os = connection.getOutputStream();
                 // 通过输出流对象将参数写出去/传输出去,它是通过字节数组写出的
                 os.write(param.getBytes());

@@ -1,4 +1,4 @@
-apiMock$MyX509TrustManager.class
-apiMock$NullHostNameVerifier.class
-apiMock$httpsRequest.class
-apiMock.class
+com/payway/tools/apiMock.class
+com/payway/tools/apiMock$NullHostNameVerifier.class
+com/payway/tools/apiMock$MyX509TrustManager.class
+com/payway/tools/apiMock$httpsRequest.class
