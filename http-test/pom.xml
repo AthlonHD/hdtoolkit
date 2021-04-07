@@ -6,7 +6,7 @@
 
     <groupId>org.athlonhd</groupId>
     <artifactId>CaptiLand-CRM</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <dependencies>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -14,6 +14,14 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+
+
     </dependencies>
 
     <properties>

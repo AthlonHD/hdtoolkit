@@ -1,11 +1,12 @@
 package com.payway.tools;
 
+import javafx.beans.binding.ObjectExpression;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -49,11 +50,13 @@ public class apiMock {
 
     public static class httpsRequest {
 
-        public void sendGetRequest(String api) {
+        public String sendGetRequest(String api) {
 
             HttpsURLConnection connection = null;
             InputStream is = null;
             BufferedReader br = null;
+            String result = null;
+
 
             try {
                 //设置可通过ip地址访问https请求
@@ -95,6 +98,7 @@ public class apiMock {
                         sbf.append(temp);
                         sbf.append("\r\n");
                     }
+                    result = sbf.toString();
                     System.out.println(sbf.toString());
 //                  return sbf.toString();
 
@@ -126,9 +130,10 @@ public class apiMock {
                 connection.disconnect();
             }
 //            return null;
+            return result;
         }
 
-        public void sendPostRequest(String api, String param) {
+        public String sendPostRequest(String api, String param) {
             HttpsURLConnection connection = null;
             InputStream is = null;
             OutputStream os = null;
@@ -215,7 +220,7 @@ public class apiMock {
                 assert connection != null;
                 connection.disconnect();
             }
-//            return result;
+            return result;
         }
 
 
