@@ -50,7 +50,7 @@ public class apiMock {
 
     public static class httpsRequest {
 
-        public String sendGetRequest(String api) {
+        public String sendGetRequest(String link, String api) {
 
             HttpsURLConnection connection = null;
             InputStream is = null;
@@ -68,7 +68,7 @@ public class apiMock {
                 SSLSocketFactory ssf = sslContext.getSocketFactory();
 
                 // 创建远程url连接对象
-                URL url = new URL("https://crmmemberuat.dc.capitaland.com" + api);
+                URL url = new URL(link + api);
                 // 通过远程url连接对象打开一个连接，强转成httpURLConnection类
                 connection = (HttpsURLConnection) url.openConnection();
 
@@ -133,7 +133,7 @@ public class apiMock {
             return result;
         }
 
-        public String sendPostRequest(String api, String param) {
+        public String sendPostRequest(String link, String api, String param) {
             HttpsURLConnection connection = null;
             InputStream is = null;
             OutputStream os = null;
@@ -149,7 +149,7 @@ public class apiMock {
                 // 从上述SSLContext对象中得到SSLSocketFactory对象
                 SSLSocketFactory ssf = sslContext.getSocketFactory();
 
-                URL url = new URL("https://crmmemberuat.dc.capitaland.com" + api);
+                URL url = new URL(link + api);
                 // 通过远程url连接对象打开连接
                 connection = (HttpsURLConnection) url.openConnection();
                 connection.setSSLSocketFactory(ssf);

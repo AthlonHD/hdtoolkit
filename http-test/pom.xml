@@ -6,7 +6,7 @@
 
     <groupId>org.athlonhd</groupId>
     <artifactId>CaptiLand-CRM</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <dependencies>
         <dependency>
             <groupId>org.jetbrains</groupId>
