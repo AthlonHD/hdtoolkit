@@ -50,7 +50,7 @@ public class apiMock {
 
     public static class httpsRequest {
 
-        public String sendGetRequest(String link, String api) {
+        public String sendGetRequest(String link, String api, String token) {
 
             HttpsURLConnection connection = null;
             InputStream is = null;
@@ -77,7 +77,7 @@ public class apiMock {
                 connection.setRequestMethod("GET");
                 // 设置请求头
                 connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("token", "3e0ac8d2-190c-4047-9582-066eed9b3066");
+                connection.setRequestProperty("token", token);
                 //connection.setRequestProperty("ProfileToken", "F2BCE9044A474C39BF1F8466708C2D9E");
 //                connection.setRequestProperty(key, value);
                 // 设置连接主机服务器的超时时间：30000毫秒
@@ -133,7 +133,7 @@ public class apiMock {
             return result;
         }
 
-        public String sendPostRequest(String link, String api, String param) {
+        public String sendPostRequest(String link, String api, String token, String param) {
             HttpsURLConnection connection = null;
             InputStream is = null;
             OutputStream os = null;
@@ -167,7 +167,7 @@ public class apiMock {
                 connection.setDoInput(true);
                 // 设置请求头
                 connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("token", "3e0ac8d2-190c-4047-9582-066eed9b3066");
+                connection.setRequestProperty("token", token);
 //                connection.setRequestProperty(key, value);
                 // 通过连接对象获取一个输出流 😉
                 os = connection.getOutputStream();
