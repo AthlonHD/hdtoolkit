@@ -11,7 +11,7 @@ chrome_options.add_argument('--ignore-certificate-errors')  # 无视证书引发
 chrome_options.add_argument('--headless')  # 无窗口模式
 driver = webdriver.Chrome(executable_path=chrome_path, options=chrome_options)  # 配置chrome设置
 
-driver.get('http://www.shutuiche.com/admin/login/index.html')
+driver.get('链接')
 time.sleep(1)
 
 keys = True

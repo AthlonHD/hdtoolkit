@@ -6,8 +6,6 @@ import os
 #clear
 os.system('clear')
 
-#Cracker logo:
-	#created by Cracker911181
 
 def logo():
 	print("              ￼ ‌￼ ￼ ￼ ￼ ￼")
@@ -24,14 +22,6 @@ def logo():
 	print("|              'CRACKER'              |")
 	print("|==================|==================|")
 	print("|      Tool        |    SMS BOMBING   |")
-	print("|==================|==================|")
-	print("|     Creator      |   CRACKER911181  |")
-	print("|==================|==================|")
-	print("|	  Don't copy my style         |")
-	print("|=====================================|")
-	print("|           CRACKER IS HERE           |")
-	print("|=====================================|")
-	print("|	   No system is safe          |")
 	print("|=====================================|")
 
 #49 =
@@ -77,8 +67,6 @@ print("")
 print("")
 print("")
 print("")
-print("             Don't copy my Tool")
-print("            CRACKER is here")
-print("          Thanks for using my tools")
+
 
 #Tool end

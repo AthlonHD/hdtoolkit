@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -50,7 +51,7 @@ public class apiMock {
 
     public static class httpsRequest {
 
-        public String sendGetRequest(String link, String api, String token) {
+        public String sendGetRequest(String link, String api) {
 
             HttpsURLConnection connection = null;
             InputStream is = null;
@@ -77,7 +78,8 @@ public class apiMock {
                 connection.setRequestMethod("GET");
                 // 设置请求头
                 connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("token", token);
+                connection.setRequestProperty("token", "抹去");
+
                 //connection.setRequestProperty("ProfileToken", "F2BCE9044A474C39BF1F8466708C2D9E");
 //                connection.setRequestProperty(key, value);
                 // 设置连接主机服务器的超时时间：30000毫秒
@@ -132,8 +134,92 @@ public class apiMock {
 //            return null;
             return result;
         }
+        public String sendGetRequest1(String link, String api,String token) {
 
-        public String sendPostRequest(String link, String api, String token, String param) {
+            HttpsURLConnection connection = null;
+            InputStream is = null;
+            BufferedReader br = null;
+            String result = null;
+
+
+            try {
+                //设置可通过ip地址访问https请求
+                HttpsURLConnection.setDefaultHostnameVerifier(new NullHostNameVerifier());
+                TrustManager[] tm = {new MyX509TrustManager()};
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(null, tm, new java.security.SecureRandom());
+                // 从上述SSLContext对象中得到SSLSocketFactory对象
+                SSLSocketFactory ssf = sslContext.getSocketFactory();
+
+                // 创建远程url连接对象
+                URL url = new URL(link + api);
+                // 通过远程url连接对象打开一个连接，强转成httpURLConnection类
+                connection = (HttpsURLConnection) url.openConnection();
+
+                connection.setSSLSocketFactory(ssf);
+                // 设置连接方式：get
+                connection.setRequestMethod("GET");
+                // 设置请求头
+                connection.setRequestProperty("Content-Type", "application/json");
+                if(token!=null){
+                    connection.setRequestProperty("token", token);
+                }else { connection.setRequestProperty("token", "抹去");}
+
+                //connection.setRequestProperty("ProfileToken", "F2BCE9044A474C39BF1F8466708C2D9E");
+//                connection.setRequestProperty(key, value);
+                // 设置连接主机服务器的超时时间：30000毫秒
+                connection.setConnectTimeout(30000);
+                // 设置读取远程返回的数据时间：
+                // connection.setReadTimeout(60000);
+                // 发送请求
+                connection.connect();
+                // 通过connection连接，获取输入流
+                if (connection.getResponseCode() == 200) {
+                    is = connection.getInputStream();
+                    // 封装输入流is，并指定字符集
+                    br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
+                    // 存放数据
+                    StringBuilder sbf = new StringBuilder();
+                    String temp = null;
+                    while ((temp = br.readLine()) != null) {
+                        sbf.append(temp);
+                        sbf.append("\r\n");
+                    }
+                    result = sbf.toString();
+                    System.out.println(sbf.toString());
+//                  return sbf.toString();
+
+                }
+
+            } catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
+                e.printStackTrace();
+
+            } finally {
+                // 关闭资源
+                if (null != br) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (null != is) {
+                    try {
+                        is.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // 关闭远程连接
+                assert connection != null;
+                connection.disconnect();
+            }
+//            return null;
+            return result;
+        }
+        public String sendPostRequest(String link, String api,String param,String token) {
             HttpsURLConnection connection = null;
             InputStream is = null;
             OutputStream os = null;
@@ -167,8 +253,13 @@ public class apiMock {
                 connection.setDoInput(true);
                 // 设置请求头
                 connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("token", token);
-//                connection.setRequestProperty(key, value);
+                if(token!=null){
+                    connection.setRequestProperty("token",token);
+                }
+                else {
+                    connection.setRequestProperty("token", "抹去");
+                }
+                  //       connection.setRequestProperty(key, value);
                 // 通过连接对象获取一个输出流 😉
                 os = connection.getOutputStream();
                 // 通过输出流对象将参数写出去/传输出去,它是通过字节数组写出的

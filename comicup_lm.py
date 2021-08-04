@@ -25,8 +25,8 @@ driver.get('https://store.allcpp.cn/#/ticket/detail?event=980')
 # 登陆
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="l-user-id"]')))
 
-driver.find_element_by_xpath('//*[@id="l-user-id"]').send_keys('18516340245')
-driver.find_element_by_xpath('//*[@id="l-user-pd"]').send_keys('LRJ990212')
+driver.find_element_by_xpath('//*[@id="l-user-id"]').send_keys('抹去')
+driver.find_element_by_xpath('//*[@id="l-user-pd"]').send_keys('抹去')
 driver.find_element_by_xpath('//*[@id="l-user-login"]').click()
 
 # # 回到活动页面
